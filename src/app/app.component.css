@@ -1,0 +1,12 @@
+*{
+    margin: 0;padding: 0;
+}
+a{
+    width: 100px;
+    line-height: 100%;
+    text-decoration: none;
+    text-align: center;
+    color: brown;
+    border: 1px solid #eee;
+    margin: 10px;
+}
