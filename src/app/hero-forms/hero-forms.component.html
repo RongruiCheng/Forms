@@ -1,12 +1,25 @@
 <h1>模板驱动表单</h1>
 <div class="container" [hidden]="submitted">
+
 <h1>Hero Form</h1>
+<!-- 模板引用变量指向了ngForm指令,这个模板引用变量就可以访问表单中每个控件值和有效性 -->
+<!-- ngForm指令为form增加了一些额外特性,它会控制那些带有ngModel指令和name属性的元素,监听他们的属性和有效性 -->
+<!-- ngForm的valid属性在它包含的每个控件都有效时才是真 -->
+<!-- 绑定ngForm.ngSubmit事件属性来处理表单提交 -->
 <form #heroForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="name">name</label>
-    <!-- 当在表单中使用[(ngModel)]时,必须要定义name属性! -->
-    <input type="text" id="name" class="form-control" required [(ngModel)]="model.name" name="name" #name="ngModel">
-    <!-- 提示框 -->
+    <!-- 当在表单中使用[(ngModel)]时,必须要定义name属性! angular注册每个FormControl时,使用name属性值作为键值-->
+    <input  type="text"
+            id="name"
+            class="form-control"
+            [(ngModel)]="model.name"
+            name="name"
+            #name="ngModel"
+            minlength="4"
+            required
+    >
+    <!-- 提示框 模板引用变量指向ngModel指令 -->
     <div class="alert alert-danger" [hidden]="name.valid || name.pristine">Name is required</div>
   </div>
 
@@ -27,6 +40,7 @@
   <!-- 调用表单的reset()方法 -->
   <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
 
+  <!-- 原生form元素没有form属性,但ngForm指令有 -->
   <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">submit</button>
 </form>
 {{showModel}}

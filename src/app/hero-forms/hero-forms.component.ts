@@ -19,6 +19,7 @@ export class HeroFormsComponent implements OnInit {
   get showModel() {
     return JSON.stringify(this.model);
   }
+
   constructor() { }
 
   ngOnInit() {
